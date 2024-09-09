@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import bannerImage from "../../assets/banner.png";
 const Home = () => {
   return (
@@ -19,9 +20,12 @@ const Home = () => {
           trial it for Free
         </p>
         <div className="flex gap-7 justify-center">
-          <button className="bg-[#eb4768e7] px-8 py-4 rounded-full text-white font-medium text-sm tracking-widest hover:bg-[#eb4768] duration-500 hover:scale-105">
+          <Link
+            to={"/create-drawing"}
+            className="bg-[#eb4768e7] px-8 py-4 rounded-full text-white font-medium text-sm tracking-widest hover:bg-[#eb4768] duration-500 hover:scale-105"
+          >
             Create Drawing
-          </button>
+          </Link>
           <button className="border border-[#eb4768] px-8 py-4 rounded-full text-[#eb4768] font-medium text-sm tracking-widest hover:bg-[#eb476810] duration-300 hover:scale-105">
             Explore Drawing
           </button>

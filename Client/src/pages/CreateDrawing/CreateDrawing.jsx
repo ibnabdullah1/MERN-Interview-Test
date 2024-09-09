@@ -1,9 +1,9 @@
-import DrawingToolbar from "../../components/Toolbar/DrawingToolbar";
+import DrawingBoard from "../../components/Drawings/DrawingBoard";
 
 const CreateDrawing = () => {
   return (
     <div>
-      <DrawingToolbar />
+      <DrawingBoard />
     </div>
   );
 };
