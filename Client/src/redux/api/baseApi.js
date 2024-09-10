@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import toast from "react-hot-toast";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://whiteboard-app-server.vercel.app/api/v1",
+  baseUrl: "https://altium-whiteboard-server.vercel.app/api/v1",
   credentials: "include",
 });
 

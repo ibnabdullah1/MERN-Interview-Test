@@ -1,7 +1,7 @@
 {
   "name": "whiteboard-app",
   "version": "1.0.0",
-  "description": "A collaborative Whiteboard App, providing RESTful APIs for CRUD operations on drawings.",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
@@ -22,7 +22,7 @@
     "mongoose",
     "typescript"
   ],
-  "author": "Kawsar Hossain",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",

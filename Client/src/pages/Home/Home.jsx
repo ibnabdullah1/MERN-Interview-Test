@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import bannerImage from "../../assets/banner.png";
+
 const Home = () => {
   return (
     <div
       className="flex justify-center items-center px-5"
       style={{
-        backgroundImage: `url(${bannerImage})`,
+        backgroundImage: `url("https://res.cloudinary.com/dzg9jynjm/image/upload/v1725954632/banner_hewwkd.png")`, // Fixed URL formatting
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100vh",
