@@ -15,7 +15,7 @@ const DrawingDetails = () => {
   return (
     <div className="max-w-6xl mx-auto my-4 px-5">
       <div className="md:flex justify-between items-center md:px-0 mb-3">
-        <h2 className="text-2xl md:text-4xl font-bold font-fira-sans md:my-10 my-3">
+        <h2 className="text-2xl md:text-4xl font-bold md:my-10 my-3">
           Details of the Drawing: {drawing?.title}
         </h2>
         <Link to={`/update-drawing/${drawing._id}`}>
