@@ -239,7 +239,7 @@ const DrawingBoard = ({ drawing }) => {
 
   return (
     <div>
-      <div className="md:flex justify-between py-3 max-w-7xl lg:px-10 px-5">
+      <div className="max-w-6xl mx-auto md:flex justify-between py-3  lg:px-10 px-5">
         <div className="flex items-center">
           <DrawingToolbar
             onModeChange={(mode) => {
@@ -298,7 +298,9 @@ const DrawingBoard = ({ drawing }) => {
         isOpen={openModal.saveDrawing}
         close={() => setOpen((prev) => ({ ...prev, saveDrawing: false }))}
         elements={elements}
+        // eslint-disable-next-line react/prop-types
         title={drawing?.title}
+        // eslint-disable-next-line react/prop-types
         description={drawing?.description}
       />
     </div>

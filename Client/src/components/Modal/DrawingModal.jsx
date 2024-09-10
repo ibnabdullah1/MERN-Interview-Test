@@ -1,4 +1,5 @@
 import { Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -9,11 +10,13 @@ import {
 // eslint-disable-next-line react/prop-types
 const SaveDrawingModal = ({ title, description, isOpen, close, elements }) => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const { drawingId } = useParams();
   const [addDrawing] = useAddDrawingMutation();
   const [updateDrawing] = useUpdateDrawingMutation();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const from = e.target;
     const payload = {
       title: from.title.value,
@@ -27,6 +30,7 @@ const SaveDrawingModal = ({ title, description, isOpen, close, elements }) => {
         toast.success(res.message);
         navigate("/all-drawings");
         close();
+        setIsLoading(false);
       }
     } else {
       const res = await addDrawing(payload).unwrap();
@@ -34,6 +38,7 @@ const SaveDrawingModal = ({ title, description, isOpen, close, elements }) => {
         toast.success(res.message);
         navigate("/all-drawings");
         close();
+        setIsLoading(false);
       }
     }
   };
@@ -100,10 +105,12 @@ const SaveDrawingModal = ({ title, description, isOpen, close, elements }) => {
                   Cancel
                 </button>
                 <button
+                  disabled={isLoading}
                   type="submit"
-                  className="bg-[#03f152] px-6 py-2 rounded-full text-white font-medium text-sm tracking-widest "
+                  className={`px-6 py-2 rounded-full text-white font-medium text-sm tracking-widest 
+    ${isLoading ? "bg-gray-400" : "bg-[#03f152]"}`}
                 >
-                  Save
+                  {isLoading ? "Saving..." : "Save"}
                 </button>
               </div>
             </form>
