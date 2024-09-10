@@ -1,150 +1,163 @@
-# BlackBoard Project Documentation
+# MERN Whiteboard App
 
 ## Overview
 
-The BlackBoard project is a web-based drawing application built using React. It allows users to create, edit, and manipulate drawings on a canvas. The application supports various drawing tools, including pencils, brushes, erasers, and shapes, and provides features such as color selection, line width adjustment, and element manipulation.
+This is a whiteboard application built with the MERN stack (MongoDB, Express.js, React.js, Node.js). The app allows users to create drawings by drawing lines, shapes, and adding text annotations. Each drawing is stored in MongoDB and can be retrieved, updated, or deleted through the API. The project follows best practices for code structure and includes proper error handling and documentation.
 
-## Table of Contents
+## Features
 
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Features](#features)
-4. [Components](#components)
-5. [Functions](#functions)
-6. [Dependencies](#dependencies)
-7. [Usage Example](#usage-example)
-8. [Future Enhancements](#future-enhancements)
-9. [Contributing](#contributing)
+- **Drawings Schema**: A MongoDB schema that supports lines, shapes, and text annotations.
+- **RESTful API**: A full set of API endpoints to handle CRUD operations on the whiteboard drawings.
+- **React Frontend**: A user interface for viewing, creating, and interacting with drawings.
+- **Production-Ready Server**: A Node.js server that serves the React frontend and communicates with the Express.js API.
 
-## Installation
+## Sections
+
+### Section I: MongoDB Schema
+
+The whiteboard schema is designed to store the following elements:
+
+- **Coordinates**: Two-dimensional arrays that store the coordinates for drawing elements.
+- **Color**: The color of the drawing elements.
+- **Thickness**: The thickness of the lines or shapes drawn.
+- **Optional Text Properties**: Content, font, and size for text annotations.
+
+#### Example Drawing Data:
+
+```json
+{
+  "title": "Sample Drawing 1",
+  "description": "A simple drawing with lines and text annotations.",
+  "elements": [
+    {
+      "type": "line",
+      "properties": {
+        "coordinates": [
+          [
+            { "x": 10, "y": 20 },
+            { "x": 100, "y": 200 }
+          ]
+        ],
+        "color": "#000000",
+        "thickness": 2
+      }
+    },
+    {
+      "type": "shape",
+      "properties": {
+        "coordinates": [
+          [
+            { "x": 50, "y": 50 },
+            { "x": 150, "y": 150 }
+          ]
+        ],
+        "color": "#ff0000",
+        "thickness": 3
+      }
+    },
+    {
+      "type": "text",
+      "properties": {
+        "coordinates": [[{ "x": 60, "y": 60 }]],
+        "color": "#0000ff",
+        "content": "Hello World",
+        "font": "Arial",
+        "size": 16
+      }
+    }
+  ],
+  "created_at": "2024-09-10T12:00:00.000Z",
+  "updated_at": "2024-09-10T12:30:00.000Z"
+}
+```
+
+### Section II: RESTful API
+
+The API provides the following endpoints:
+
+- `POST /api/v1/drawings`: Create a new drawing.
+- `GET /api/v1/drawings`: Get all drawings.
+- `GET /api/v1/drawings/:id`: Get a drawing by its ID.
+- `PUT /api/v1/drawings/:id`: Update a drawing by its ID.
+- `DELETE /api/v1/drawings/:id`: Delete a drawing by its ID.
+
+### Section III: React Frontend
+
+The frontend has the following pages:
+
+- **All Drawings Page**: Displays a list of all saved drawings.
+- **Drawing Page**: Allows users to view and interact with a specific drawing. Users can draw lines, shapes, and add text annotations.
+
+### Section IV: Node.js Server
+
+The Node.js server serves the React frontend and the Express API. It includes error handling to gracefully manage API errors and invalid requests.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+- MongoDB (MongoDB Atlas recommended for deployment)
+- Git
+
+### Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/f4faysal/MERN-Interview-Test.git
+   git clone https://github.com/ibnabdullah1/MERN-Interview-Test.git
    ```
 
-2. Navigate to the project directory:
+2. Install server dependencies:
 
    ```bash
-   cd MERN-Interview-Test
-   ```
-
-3. Install dependencies:
-
-   ```bash
+   cd server
    npm install
    ```
 
-## Usage
-
-1. Start the development server:
-
+3. Install client dependencies:
    ```bash
-   npm start
+   cd client
+   npm install
    ```
 
-2. Open your browser and visit [https://f4black-board.vercel.app/](https://f4black-board.vercel.app/).
+### Configuration
 
-3. Use the drawing tools and features on the canvas.
+1. Create a `.env` file in the `client` directory with the following fields:
+   ```
+   VITE_API_URL = your-server-url
+   ```
+2. Create a `.env` file in the `server` directory with the following fields:
+   ```
+   MONGO_URI= your-mongodb-database-url
+   PORT= 5000
+   ```
 
-## Features
+### Running the App
 
-- **Drawing Tools:**
+1. Start the server:
 
-  - Pencil
-  - Eraser
-  - Shapes (e.g., rectangles, )
+   ```bash
+   cd server
+   bun start:dev
+   ```
 
-- **Tool Customization:**
+2. Start the client:
+   ```bash
+   cd client
+   bun dev
+   ```
 
-  - Color white selection
-  - Line width adjustment
+### Deployment
 
-- **Element Manipulation:**
+The application is deployed on Vercel. You can view the deployed version here: [Vercel Deployment Link](https://whiteboard-vercel-app).
 
-  - Selection of drawn elements
+## Technologies Used
 
-- **Responsive Design:**
-  - Canvas adapts to the window size
+- **Frontend**: React.js, redux, Tailwind CSS
+- **Backend**: Node.js, typescript, Express.js, MongoDB, Mongoose
+- **Deployment**: Vercel, MongoDB
 
-## Components
+## Contributions
 
-1. **Swatch:**
-
-   - Manages tool selection, color, and line width settings.
-
-2. **element.js:**
-
-   - Contains functions for creating, adjusting, and manipulating drawing elements.
-
-3. **Swatch:**
-
-   - Manages tool selection, color, and line width settings.
-
-4. **BlackBoard:**
-   - Main component handling the canvas, drawing logic, and user interactions.
-
-## Functions
-
-1. **createElement:**
-
-   - Creates a new drawing element with specified properties.
-
-2. **adjustElementCoordinates:**
-
-   - Adjusts the coordinates of a drawing element.
-
-3. **midPointBtw:**
-
-   - Calculates the midpoint between two points.
-
-4. **resizedCoordinates:**
-
-   - Calculates the new coordinates when resizing a drawing element.
-
-5. **getElementAtPosition:**
-   - Retrieves the drawing element at a specific position.
-
-## Dependencies
-
-- **React:** JavaScript library for building user interfaces.
-- **roughjs:** Library for creating hand-drawn-like graphics.
-
-## Usage Example
-
-```jsx
-import React from "react";
-import BlackBoard from "./BlackBoard";
-
-function App() {
-  return (
-    <div>
-      <BlackBoard />
-    </div>
-  );
-}
-
-export default App;
-```
-
-## Future Enhancements
-
-1. **Undo/Redo Functionality:**
-
-   - Implement the ability to undo and redo drawing actions.
-
-2. **Save/Load Drawings:**
-
-   - Allow users to save their drawings and load them later.
-
-3. **Additional Drawing Tools:**
-
-   - Expand the range of drawing tools and customization options.
-
-4. **User Authentication:**
-   - Add user authentication to save drawings on a per-user basis.
-
-## Contributing
-
-Contributions are welcome! Feel free to submit issues or pull requests.
+Contributions are welcome! Feel free to submit a pull request or open an issue if you have any suggestions or improvements.
